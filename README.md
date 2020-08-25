@@ -86,6 +86,7 @@ DCGANモデルを訓練した後,test_dataフォルダーにテストデータ�
     $ python main.py --dataset DATASET_NAME --input_height=108 --crop --anomaly_test
 ## Dataset
 コーヒー豆のデータセットは以下の Dropbox リンクにダウンロードできる。
+ [Cafe picking dataset](https://www.dropbox.com/sh/nnc555tftagmqlh/AAA5SieETk6me_8-17BBj_kSa?dl=0).
 Dropboxフォルダの中以下の4種類がある。
 - OK：正常な豆のみ入る画像データ。
 - NG: 異常な豆と正常な豆を混ざった画像。
