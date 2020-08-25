@@ -53,10 +53,9 @@ Total Loss for finding latent variable z is weighted sum of the two. (defualt la
 
 
 ## Usage
+まずDCGANを訓練させる必要がある。
 
-First, you "must" have trained DCGAN model with normal dataset.
-
-If you have checkpoint file, the model tries to use it.
+訓練済みのファイルはcheckpointに保存する。
 
 ### Model Preparation 
 (If you want to download and train the model)
@@ -79,7 +78,7 @@ Or, you can use your own dataset (without central crop) by:
     $ python main.py --dataset=eyes --input_fname_pattern="*_cropped.png" --train
 
 ### Anomaly Detection
-After having trained DCGAN model, you have to prepare test images for anomaly detection.
+DCGANモデルを訓練した後,test_dataフォルダーにテストデータを入れて異常検出を行う.
 
     $ mkdir ./test_data
     ... add test images to ./test_data ...
