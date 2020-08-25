@@ -85,31 +85,22 @@ After having trained DCGAN model, you have to prepare test images for anomaly de
     ... add test images to ./test_data ...
     
     $ python main.py --dataset DATASET_NAME --input_height=108 --crop --anomaly_test
+## Dataset
+コーヒー豆のデータセットは以下の Dropbox リンクにダウンロードできる。
+Dropboxフォルダの中以下の4種類がある。
+- OK：正常な豆のみ入る画像データ。
+- NG: 異常な豆と正常な豆を混ざった画像。
+- NG/label_viz:異常画像に自分でアノテーションを付けた画像。
+- NG/label:アノテーションを付けた箇所のみ強調した画像。
 
 ## Results
-To valid the model implementation, simple test was proceeded.
-
-Initial generated image by DCGAN in training is conisdered as anomaly.
-
-After learns DCGAN model, compared final and initial images on certain latent varaible z.
-
-Then, anomaly score of initial images was calculated.
-
-Eyes, mouth, and distorted parts in image were detected.
-
+DCGANを学習させた後、異常画像を入力した時以下の結果を出た。ここでsegmentation画像はAnoGANにより異常検出した結果である。
 ![result](./assets/result_example.jpeg)
-
 ## Related works
 - [Image Style Transfer](https://pdfs.semanticscholar.org/7568/d13a82f7afa4be79f09c295940e48ec6db89.pdf)
 - (Reconstruction-based AD) [Anomaly Detection in DBMSs](https://arxiv.org/abs/1708.02635)
 - (ICLR2018 under-review) [ADGAN](https://openreview.net/forum?id=S1EfylZ0Z)
 
-## To Do
-### You can always request pull requests with feeling free.
-- [ ] Threshold Setting Function (Manual/Automatic)
-- [ ] Add performance measures of anomaly detection with labels (ROC AUC)
-- [ ] Visaulization of anomaly detection results (t-SNE)
-
 ## Acknowledgement
 - Thanks for @carpedm20 's implementation of [DCGAN](https://github.com/carpedm20/DCGAN-tensorflow). I implemented AnoGAN based on his implementation.
-
+- Thanks for @LeeDoYup 's implementation of [AnoGAN](https://github.com/LeeDoYup/AnoGAN-tf).
