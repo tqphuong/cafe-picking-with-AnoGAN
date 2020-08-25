@@ -97,7 +97,7 @@ Then, anomaly score of initial images was calculated.
 
 Eyes, mouth, and distorted parts in image were detected.
 
-![result](./assets/result_example .jpeg)
+![result](./assets/result_example.jpeg)
 
 ## Related works
 - [Image Style Transfer](https://pdfs.semanticscholar.org/7568/d13a82f7afa4be79f09c295940e48ec6db89.pdf)
