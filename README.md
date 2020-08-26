@@ -13,8 +13,8 @@ AnoGANについての論文: [Anomaly GAN (AnoGAN)](https://arxiv.org/abs/1703.0
 ANOGANでは二つの画像の違いを計算するために異常度(Anomaly Score)を定義する 。この異常度は residual loss and discrimination lossから構成された。
 - Residual loss: 二つの画像にある各ピクセルの差の合計。
 - Discrimination loss: 入力画像と生成した画像の識別器の中間層の差を合計
-![Res_Loss](./assets/res_loss.jpeg)
 
+![Res_Loss](./assets/res_loss.jpeg)
 
 ![Discrimination Loss](./assets/dis_loss.jpeg)
 
@@ -67,9 +67,8 @@ DCGANモデルを訓練した後,test_dataフォルダーにテストデータ�
     
     $ python main.py --dataset DATASET_NAME --input_height=108 --crop --anomaly_test
 ## Dataset
-コーヒー豆のデータセットは以下の Dropbox リンクにダウンロードできる。
+コーヒー豆のデータセット:[Cafe picking dataset](https://www.dropbox.com/sh/nnc555tftagmqlh/AAA5SieETk6me_8-17BBj_kSa?dl=0).
 
- [Cafe picking dataset](https://www.dropbox.com/sh/nnc555tftagmqlh/AAA5SieETk6me_8-17BBj_kSa?dl=0).
 Dropboxフォルダの中以下の4種類がある。
 - OK：正常な豆のみ入る画像データ。
 - NG: 異常な豆と正常な豆を混ざった画像。
@@ -85,5 +84,5 @@ DCGANを学習させた後、異常画像を入力した時以下の結果を出
 - (ICLR2018 under-review) [ADGAN](https://openreview.net/forum?id=S1EfylZ0Z)
 
 ## Acknowledgement
-- Thanks for @carpedm20 's implementation of [DCGAN](https://github.com/carpedm20/DCGAN-tensorflow). I implemented AnoGAN based on his implementation.
+- Thanks for @carpedm20 's implementation of [DCGAN](https://github.com/carpedm20/DCGAN-tensorflow)
 - Thanks for @LeeDoYup 's implementation of [AnoGAN](https://github.com/LeeDoYup/AnoGAN-tf).
