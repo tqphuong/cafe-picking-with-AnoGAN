@@ -1,46 +1,28 @@
 # cafe-picking-with-AnoGAN
 
-Tensorflow implementation of [Anomaly GAN (AnoGAN)](https://arxiv.org/abs/1703.05921).
-
-This model detect anomaly part in images, after training DCGAN with normal dataset.
-
-(In Korean, H. Kim's detail explanation is [here](https://www.slideshare.net/ssuser06e0c5/anomaly-detection-with-gans))
-
-Basic model is DCGAN (Deep Convolutional Generative Adversarial Networks).
-
-* (Anomaly Detection of MNIST is not yet available)
+AnoGANを用いて、コーヒー豆の異常検知を行った。
+AnoGANについての論文: [Anomaly GAN (AnoGAN)](https://arxiv.org/abs/1703.05921).
 
 ## Model Description
-After learn DCGAN model with normal dataset (not contains anomalies), 
+まずDCGANを正常なデータのみ学習させる。そして、異常画像を入力し、学習したモデルの潜在空間に一番近い画像を生成するような潜在変数をマッピングする。ここでDCGANモデルは正常なデータだけ学習したので、異常画像に対して上手く再構成できない。よって、入力画像と生成した画像の違いを計算すれば異常検知ができるようになる。
 
-* Anomaly Detector calculates anomaly score of unseen images.
 
 
 ![Model Structure](./assets/model_structure.jpeg)
 
-
-When unseen data comes, the model tries to find latent variable z that generates input image using backpropagation. (similar with style transfer)
-
-Anomaly Score is based on residual and discrimination losses.
-- Residual loss: L1 distance between generated image by z and unseen test image.
-- Discrimination loss: L1 distacne between hidden representations of generated and test image, extracted by discriminators.
-
+ANOGANでは二つの画像の違いを計算するために異常度(Anomaly Score)を定義する 。この異常度は residual loss and discrimination lossから構成された。
+- Residual loss: 二つの画像にある各ピクセルの差の合計。
+- Discrimination loss: 入力画像と生成した画像の識別器の中間層の差を合計
 ![Res_Loss](./assets/res_loss.jpeg)
 
 
 ![Discrimination Loss](./assets/dis_loss.jpeg)
 
-Total Loss for finding latent variable z is weighted sum of the two. (defualt lambda = 0.1)
+異常度は二つのロスから以下の式で計算した。 (デフォルトは lambda = 0.1)
 
 
 ![Total Loss](./assets/t_loss.jpeg)
 
-## File Descriptions
-- main.py : Main function of implementations, contained argument parsers, model construction, and test.
-- model.py : DCGAN class (containing anomaly detection function. Imple core)
-- download.py : Files for downloading celebA, LSUN, and MNIST. 
-- ops.py : Some operation functions with tensorflow.
-- utils.py : Some functions dealing with image preprocessing.
 
 
 ## Prerequisites (my environments)
@@ -86,6 +68,7 @@ DCGANモデルを訓練した後,test_dataフォルダーにテストデータ�
     $ python main.py --dataset DATASET_NAME --input_height=108 --crop --anomaly_test
 ## Dataset
 コーヒー豆のデータセットは以下の Dropbox リンクにダウンロードできる。
+
  [Cafe picking dataset](https://www.dropbox.com/sh/nnc555tftagmqlh/AAA5SieETk6me_8-17BBj_kSa?dl=0).
 Dropboxフォルダの中以下の4種類がある。
 - OK：正常な豆のみ入る画像データ。
